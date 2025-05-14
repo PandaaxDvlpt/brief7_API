@@ -3,7 +3,7 @@
 
 :root {
     --font-family: 'Poppins', sans-serif;
-    --primary-blue: #007aff;  
+    --primary-blue: #6aacf1;  
     --secondary-dark: #294e6d;
     --white: #ffffff;  
     --hover-color: #ddddddcc;
@@ -70,6 +70,11 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 10px;
+    
 }
 
 .sidebar .image-text {
@@ -148,6 +153,22 @@ body {
     border-radius: 6px;
     transition: var(--tran-04);
     padding: 0 10px;
+    position: relative;
+  }
+  
+  .sidebar li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 10px;
+    background-color: var(--primary-blue);
+    transition: var(--tran-04);
+  }
+
+  .sidebar li a:hover::after {
+    width: calc(100% - 20px);
   }
   
   .sidebar li a:hover {
@@ -195,7 +216,7 @@ body {
     padding: 20px;
     margin: 20px;
     width: 300px;
-    height: 300px;
+    height: 320px;
     position: relative;
 }
 
@@ -204,13 +225,16 @@ body {
     height: 50px;
     border-radius: 50%;
     flex-direction: column;
-    margin-left: 85px;
+    margin-left: 100px;
+
 }
 
 .user-card h3 {
     font-size: 20px;
     font-weight: 600;
     margin-top: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
 .user-card p {
@@ -220,6 +244,9 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 100%;
+    text-decoration: underline;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .user-card h2 {
@@ -227,8 +254,9 @@ body {
     font-weight: 600;
     margin-top: 10px;
     color: var(--accent-green);
-    margin-left: 85px;
+    text-align: center;
     margin-top: 30px;
+
 }
 
 #gender {
@@ -250,5 +278,15 @@ body {
     margin-top: 20px;
     height: calc(100vh - 140px);
     overflow-y: auto;
+    scroll-behavior: smooth;
 }
+
+.user-card:hover {
+  scale: 1.05;
+  transition: var(--tran-05);
+  border: 2px solid var(--primary-blue);
+}
+
+
+
 

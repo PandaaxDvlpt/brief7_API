@@ -24,11 +24,11 @@ async function displayData(sortType = null) {
             sortedResults = sortedResults.filter(user => user.gender === "female");
             break;
         case 'amount':
-            sortedResults.sort((a, b) => {
-                const amountA = parseInt(a.amount || Math.floor(Math.random() * 10000) + 1);
-                const amountB = parseInt(b.amount || Math.floor(Math.random() * 10000) + 1);
-                return amountB - amountA;
-            });
+            if(amount){
+                currentData.results.sort((a, b) => a.amount - b.amount);
+            } else {
+                currentData.results.sort((a, b) => b.amount - a.amount);
+            }
             break;
         case 'alphabetical':
             sortedResults.sort((a, b) => a.name.first.localeCompare(b.name.first));
@@ -43,10 +43,10 @@ async function displayData(sortType = null) {
         userCard.innerHTML = `
             <img id="picture" src="${user.picture.medium}" alt="Photo de profil">
             <h3 id="name">${user.name.first} ${user.name.last}</h3>
-            <p id="email">${user.email}</p>
-            <p id="phone">${user.phone}</p>
-            <p id="city-country">${user.location.city}, ${user.location.country}</p>
-            <h2 id="amount">${randomAmount}€</h2>
+            <p id="email">📧 ${user.email}</p>
+            <p id="phone">☎️ ${user.phone}</p>
+            <p id="city-country">📍 ${user.location.city}, ${user.location.country}</p>
+            <h2 id="amount">💶 ${randomAmount}€</h2>
             <div id="gender" style="width: 20px; height: 20px; border-radius: 50%; background-color: ${user.gender === "male" ? "#007aff" : "#e91e63"}"></div>
         `;
 
@@ -62,9 +62,11 @@ toggle.addEventListener("click", () => {
     if (window.innerWidth <= 600) {
         sidebar.classList.toggle("open");
         sidebar.classList.remove("close");
+        localStorage.setItem("sidebarState", "close");
     } else {
         sidebar.classList.toggle("close");
         sidebar.classList.remove("open");
+        localStorage.setItem("sidebarState", "open")
     }
 });
 
