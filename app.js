@@ -54,10 +54,8 @@ async function displayData(sortType = null) {
     });
 }
 
-// Initial display
 displayData();
 
-// Sidebar toggle
 const sidebar = document.querySelector(".sidebar");
 const toggle = document.querySelector(".toggle");
 toggle.addEventListener("click", () => {
@@ -70,7 +68,6 @@ toggle.addEventListener("click", () => {
     }
 });
 
-// Add click events for sorting
 document.querySelectorAll('.sidebar li a').forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
