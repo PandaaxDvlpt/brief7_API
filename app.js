@@ -1,6 +1,10 @@
 async function fetchData() {
     const response = await fetch("https://randomuser.me/api/?results=50");
     const data = await response.json();
+    data.results.forEach(user => {
+    let randomAmount = Math.floor(Math.random() * 10000) + 1;
+    user.amount = randomAmount; 
+    })
     return data;
 };
 
@@ -24,11 +28,7 @@ async function displayData(sortType = null) {
             sortedResults = sortedResults.filter(user => user.gender === "female");
             break;
         case 'amount':
-            if(amount){
-                currentData.results.sort((a, b) => a.amount - b.amount);
-            } else {
-                currentData.results.sort((a, b) => b.amount - a.amount);
-            }
+            sortedResults.sort((a, b) => b.amount - a.amount);
             break;
         case 'alphabetical':
             sortedResults.sort((a, b) => a.name.first.localeCompare(b.name.first));
@@ -38,7 +38,7 @@ async function displayData(sortType = null) {
     sortedResults.forEach(user => {
         const userCard = document.createElement("div");
         userCard.className = "user-card";
-        const randomAmount = Math.floor(Math.random() * 10000) + 1;
+
 
         userCard.innerHTML = `
             <img id="picture" src="${user.picture.medium}" alt="Photo de profil">
@@ -46,7 +46,7 @@ async function displayData(sortType = null) {
             <p id="email">📧 ${user.email}</p>
             <p id="phone">☎️ ${user.phone}</p>
             <p id="city-country">📍 ${user.location.city}, ${user.location.country}</p>
-            <h2 id="amount">💶 ${randomAmount}€</h2>
+            <h2 id="amount">💶 ${user.amount}€</h2>
             <div id="gender" style="width: 20px; height: 20px; border-radius: 50%; background-color: ${user.gender === "male" ? "#007aff" : "#e91e63"}"></div>
         `;
 
