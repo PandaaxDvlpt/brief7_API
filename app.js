@@ -10,6 +10,17 @@ const sidebar = document.querySelector(".sidebar");
 const toggle = document.querySelector(".toggle");
 const searchInput = document.querySelector('#search-input');
 
+document.addEventListener('DOMContentLoaded', () => {   
+    const sidebarState = localStorage.getItem("sidebarState");
+    if (sidebarState === "close") {
+        sidebar.classList.add("close");
+        sidebar.classList.remove("open");
+    } else {
+        sidebar.classList.remove("close");
+        sidebar.classList.add("open");
+    }
+});
+
 searchInput.addEventListener('input', () => {
     displayData();
 });
@@ -107,11 +118,11 @@ function handleSidebarToggle() {
     if (window.innerWidth <= 600) {
         sidebar.classList.toggle("open");
         sidebar.classList.remove("close");
-        localStorage.setItem("sidebarState", "close");
+        localStorage.setItem("sidebarState", sidebar.classList.contains("open") ? "open" : "close");
     } else {
         sidebar.classList.toggle("close");
         sidebar.classList.remove("open");
-        localStorage.setItem("sidebarState", "open");
+        localStorage.setItem("sidebarState", sidebar.classList.contains("close") ? "close" : "open");
     }
 }
 
