@@ -16,9 +16,23 @@ async function displayData(sortType = null) {
     }
     
     const userContainer = document.getElementById("user-container");
+    const searchInput = document.querySelector('#search-input');
     userContainer.innerHTML = "";
 
     let sortedResults = [...currentData.results];
+
+    // Filtrage par recherche
+    const searchTerm = searchInput.value.toLowerCase();
+    if (searchTerm) {
+        sortedResults = sortedResults.filter(user => 
+            user.name.first.toLowerCase().includes(searchTerm) ||
+            user.name.last.toLowerCase().includes(searchTerm) ||
+            user.email.toLowerCase().includes(searchTerm) ||
+            user.location.city.toLowerCase().includes(searchTerm) ||
+            user.location.country.toLowerCase().includes(searchTerm) ||
+            user.amount.toString().includes(searchTerm)
+        );
+    }
 
     switch(sortType) {
         case 'male':
@@ -34,6 +48,9 @@ async function displayData(sortType = null) {
             sortedResults.sort((a, b) => a.name.first.localeCompare(b.name.first));
             break;
     }
+
+   
+
 
     sortedResults.forEach(user => {
         const userCard = document.createElement("div");
@@ -52,6 +69,7 @@ async function displayData(sortType = null) {
 
         userContainer.appendChild(userCard);
     });
+    
 }
 
 displayData();
@@ -70,6 +88,9 @@ toggle.addEventListener("click", () => {
     }
 });
 
+
+
+
 document.querySelectorAll('.sidebar li a').forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -79,3 +100,20 @@ document.querySelectorAll('.sidebar li a').forEach(link => {
         }
     });
 });
+
+const searchInput = document.querySelector('#search-input');
+
+function handleSearch() {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    displayData();
+}
+
+searchInput.addEventListener('input', handleSearch);
+
+searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault(); 
+        handleSearch();
+    }
+});
+

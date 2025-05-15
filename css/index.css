@@ -195,6 +195,9 @@ body {
   .sidebar.close .text {
     display: none;
   }
+
+
+
 .sidebar .header-text {
     color: var(--white);
     text-underline-offset: 10px;
@@ -287,6 +290,12 @@ body {
   border: 2px solid var(--primary-blue);
 }
 
+.search-input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
-
-
+.sidebar.close .search-input {
+  display: none;
+}
