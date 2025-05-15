@@ -210,17 +210,63 @@ body {
     margin-left: 85px;
 }
 
-
-
 .user-card {
     background-color: var(--white);
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin: 20px;
     width: 300px;
     height: 320px;
     position: relative;
+    overflow: hidden;
+    border: 2px solid var(--primary-blue);
+    transition: var(--tran-05);
+    z-index: 1;
+    cursor: pointer;
+}
+
+.user-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(90deg, var(--primary-blue), transparent, var(--primary-blue));
+    z-index: -1;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.user-card::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(90deg, var(--primary-blue), transparent, var(--primary-blue));
+    z-index: -1;
+    border-radius: inherit;
+    animation: rotate 2s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.user-card:hover::before,
+.user-card:hover::after {
+    opacity: 1;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .user-card img {
@@ -285,9 +331,9 @@ body {
 }
 
 .user-card:hover {
-  scale: 1.05;
-  transition: var(--tran-05);
-  border: 2px solid var(--primary-blue);
+    scale: 1.05;
+    transition: var(--tran-05);
+    border: none;
 }
 
 .search-input {
