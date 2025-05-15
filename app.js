@@ -10,13 +10,10 @@ const sidebar = document.querySelector(".sidebar");
 const toggle = document.querySelector(".toggle");
 const searchInput = document.querySelector('#search-input');
 
-<<<<<<< HEAD
 searchInput.addEventListener('input', () => {
     displayData();
 });
 
-=======
->>>>>>> a1847b09679e327d28644b52b81c12410ee1714d
 async function fetchData() {
     const response = await fetch("https://randomuser.me/api/?results=50");
     const data = await response.json();
