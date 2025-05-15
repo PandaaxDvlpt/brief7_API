@@ -299,3 +299,7 @@ body {
 .sidebar.close .search-input {
   display: none;
 }
+
+.search-bar {
+  margin-top: 100px;
+}
