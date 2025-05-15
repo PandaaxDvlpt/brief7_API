@@ -36,6 +36,14 @@ async function fetchData() {
 }
 
 function handleSort(sortType, sortedResults) {
+    if (sortType === 'all') {
+        Object.keys(sortStates).forEach(key => {
+            sortStates[key].count = 0;
+            sortStates[key].ascending = true;
+        }); // J'en peux plus.
+        return sortedResults;
+    }
+
     sortStates[sortType].count++;
     
     if (sortStates[sortType].count === 2) {
