@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Tableau de Bord - Donateurs</title>
+</head>
+<body>
+    <nav class="sidebar">
+        <header>
+            <div class="image-text">
+                <div class="text header-text">
+                    <span class="name">Navigation</span>
+                </div>
+            </div>
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+        <div class="menu-bar">
+            <div class="top-content">
+                <ul class="menu-links">
+                    <li class="navlinks">
+                        <a href="index.html">
+                            <i class='bx bx-list-ul icon'></i>    
+                            <span class="text nav-text">Liste des Donateurs</span>
+                        </a>
+                    </li>
+                    <li class="navlinks">
+                        <a href="dashboard.html" class="active">
+                            <i class='bx bx-bar-chart-alt-2 icon'></i>    
+                            <span class="text nav-text">Tableau de Bord</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard">
+        <div class="box">
+            <span class="box-title">Tableau de Bord</span>
+        </div>
+        
+        <div class="stats-container">
+            <div class="stat-card primary">
+                <h3>Total Utilisateurs</h3>
+                <div class="value" id="total-users">0</div>
+                <div class="trend">Utilisateurs actifs</div>
+            </div>
+            <div class="stat-card success">
+                <h3>Montant Total</h3>
+                <div class="value" id="total-amount">0€</div>
+                <div class="trend">Montant cumulé</div>
+            </div>
+            <div class="stat-card warning">
+                <h3>Montant Moyen</h3>
+                <div class="value" id="average-amount">0€</div>
+                <div class="trend">Par utilisateur</div>
+            </div>
+            <div class="stat-card danger">
+                <h3>Montant Maximum</h3>
+                <div class="value" id="max-amount">0€</div>
+                <div class="trend">Plus haut montant</div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h2>Distribution par Genre</h2>
+            <div class="gender-distribution">
+                <div class="gender-stat male">
+                    <h3>Hommes</h3>
+                    <div class="value" id="male-count">0</div>
+                    <div class="trend">Utilisateurs masculins</div>
+                </div>
+                <div class="gender-stat female">
+                    <h3>Femmes</h3>
+                    <div class="value" id="female-count">0</div>
+                    <div class="trend">Utilisatrices féminines</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html> 
